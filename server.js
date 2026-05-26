@@ -3,6 +3,7 @@ import express from 'express';
 import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
+import taskRoutes from './routes/tasksRoutes.js';
 
 const app = express(); // Create Express app
 const PORT = process.env.PORT || 3000; // Set port from env or default to 3000
@@ -20,7 +21,10 @@ app.use('/api/users', userRoutes);
 // Import and use project routes
 app.use('/api/projects', projectRoutes);
 
+// Import and use task routes
+app.use('/api/projects', taskRoutes);
 
+      
 // Start the server
 app.listen(PORT, () => {
   console.log(`🌎 Server running on port ${PORT}`);
