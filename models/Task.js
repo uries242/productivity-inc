@@ -1,31 +1,33 @@
-import { status } from "init";
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"; // Imported & destructured 'Schema' and 'model' from Mongoose for schema definition and model creation
 
-const mongoose = require("mongoose"); // Import Mongoose for schema definition
-const { Schema } = mongoose;          // Destructure Schema from Mongoose for easier access
 
 const taskSchema = new Schema({
   title: {
     type: String,
     required: true,
-    trim: true },
+    trim: true,
+  },
 
   description: {
     type: String,
-    trim: true },
-
-  project: {
-    type: Schema.Types.ObjectId,
-    ref: "Project",
-    required: true },
+    trim: true,
+  },
 
   status: {
     type: String,
-    enum: ["To Do", "In Progress", "Done"],
+    enum: ["To Do", "In Progress", "Done"], 
     default: "To Do",
+  }, 
+  
+  // This field will store the ObjectId reference to the associated Project
+  project: {
+    type: Schema.Types.ObjectId, 
+    ref: "Project",
+    required: true,
   },
+
 });
 
-const Task = mongoose.model("Task", taskSchema);
+const Task = model("Task", taskSchema);
 
 export default Task;
